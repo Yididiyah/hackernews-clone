@@ -1,13 +1,111 @@
+* {
+  box-sizing: border-box;
+}
 body {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+  padding: 0;
+  font-family: Verdana, Geneva, sans-serif;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+input {
+  max-width: 500px;
+}
+
+.gray {
+  color: #828282;
+}
+
+.orange {
+  background-color: #ff6600;
+}
+
+.background-gray {
+  background-color: rgb(246, 246, 239);
+}
+
+.f11 {
+  font-size: 11px;
+}
+
+.w85 {
+  width: 85%;
+}
+
+.button {
+  font-family: monospace;
+  font-size: 10pt;
+  color: black;
+  background-color: buttonface;
+  text-align: center;
+  padding: 2px 6px 3px;
+  border-width: 2px;
+  border-style: outset;
+  border-color: buttonface;
+  cursor: pointer;
+  max-width: 250px;
+  display: inline-block;
+  margin-right: 0.375rem;
+}
+.form {
+  width: 90vw;
+  max-width: 900px;
+  background: rgb(246, 246, 239);
+  border-radius: 3px;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1),
+    0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  padding: 2rem 2.5rem;
+  margin: 0 auto;
+  transition: 0.3s ease-in-out all;
+}
+.form:hover {
+  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1),
+    0 10px 10px -5px rgba(0, 0, 0, 0.04);
+}
+.form-label {
+  display: block;
+  font-size: 0.875rem;
+  margin-bottom: 0.5rem;
+  text-transform: capitalize;
+  letter-spacing: 1px;
+}
+.form-input {
+  width: 100%;
+  padding: 0.375rem 0.75rem;
+  border-radius: 0.25rem;
+  background: #f0f4f8;
+  border: 1px solid #bcccdc;
+  margin-bottom: 0.3rem;
+}
+.nav-bar {
+  display: flex;
+  justify-content: flex-start;
+  max-width: 900px;
+  margin: 0.2rem auto 0 auto;
+  padding: 0.1rem 0.3rem;
+}
+.nav-bar a {
+  text-decoration: none;
+  margin-right: 5px;
+  color: black;
+}
+.post-list {
+  max-width: 900px;
+  margin: 0 auto;
+  background: rgb(246, 246, 239);
+}
+.bold {
+  font-weight: 900;
+}
+.link-btn {
+  font-size: 1rem;
+  text-align: left;
+  background: none;
+  color: black;
+  margin: 0;
+  padding: 0;
+  border: none;
+  cursor: pointer;
+}
+.push-right {
+  margin-left: auto;
 }
