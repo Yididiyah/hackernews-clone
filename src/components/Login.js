@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router";
 import { gql, useMutation } from "@apollo/client";
-import { AUTH_TOKEN } from "../constants";
+import { AUTH_TOKEN, USER_ID } from "../constants";
 
 const SIGN_UP_MUTATION = gql`
   mutation SignupMutation($username: String!, $password: String!) {
@@ -18,6 +18,9 @@ const LOGIN_MUTATION = gql`
   mutation LoginMutation($username: String!, $password: String!) {
     login(username: $username, password: $password) {
       token
+      user {
+        id
+      }
     }
   }
 `;
@@ -36,6 +39,7 @@ const Login = () => {
     },
     onCompleted: ({ login }) => {
       localStorage.setItem(AUTH_TOKEN, login.token);
+      localStorage.setItem(USER_ID, login.user.id);
       navigate("/");
     },
   });

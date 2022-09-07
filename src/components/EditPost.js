@@ -3,13 +3,13 @@ import { gql, useMutation, useQuery } from "@apollo/client";
 import React, { useState } from "react";
 import { useNavigate, useParams } from "react-router";
 
-const CREATE_POST_MUTATION = gql`
-  mutation CreatePostMutation(
+const UPDATE_POST_MUTATION = gql`
+  mutation UpdatePostMutation(
+    $id: String!
     $title: String!
     $content: String!
-    $postType: PostType
   ) {
-    createPost(title: $title, content: $content, postType: $postType) {
+    updatePost(id: $id, title: $title, content: $content) {
       id
       title
       content
@@ -37,23 +37,38 @@ const POST_QUERY = gql`
   }
 `;
 
-const CreatePost = () => {
+const EditPost = () => {
+  const { postId } = useParams();
+
+  const navigate = useNavigate();
   const [formState, setFormState] = useState({
     title: "",
     content: "",
-    postType: "MAIN",
   });
-  const navigate = useNavigate();
 
-  const [createPost] = useMutation(CREATE_POST_MUTATION, {
+  const { loading, error, data } = useQuery(POST_QUERY, {
     variables: {
+      id: postId,
+    },
+    onCompleted: (data) => {
+      setFormState({
+        ...formState,
+        title: data.post.title,
+        content: data.post.content,
+      });
+    },
+  });
+
+  const [updatePost] = useMutation(UPDATE_POST_MUTATION, {
+    variables: {
+      id: postId,
       title: formState.title,
       content: formState.content,
-      postType: formState.postType,
     },
     onCompleted: () => navigate("/"),
   });
-  console.log("formState", formState);
+  if (loading) return "Loading...";
+  if (error) return `Error: ${error.message}`;
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormState({
@@ -63,7 +78,7 @@ const CreatePost = () => {
   };
   const handleSubmit = (e) => {
     e.preventDefault();
-    createPost();
+    updatePost();
   };
   return (
     <div>
@@ -72,7 +87,7 @@ const CreatePost = () => {
           Content
         </label>
         <input
-          value={formState.value}
+          value={formState.content}
           onChange={handleChange}
           name="content"
           type="text"
@@ -84,7 +99,7 @@ const CreatePost = () => {
           Title
         </label>
         <input
-          value={formState.value}
+          value={formState.title}
           onChange={handleChange}
           name="title"
           type="text"
@@ -92,23 +107,6 @@ const CreatePost = () => {
           className="form-input"
           id="title"
         />
-
-        <label className="form-label" htmlFor="post-type">
-          Post Type
-        </label>
-        <select
-          value={formState.postType}
-          onChange={handleChange}
-          name="postType"
-          id="post-type"
-          className="post-type"
-        >
-          <option value="MAIN"> Main</option>
-          <option value="JOB"> Job</option>
-          <option value="ASK"> Ask</option>
-          <option value="SHOW"> Show</option>
-        </select>
-
         <button type="submit" className="button">
           Submit
         </button>
@@ -117,4 +115,4 @@ const CreatePost = () => {
   );
 };
 
-export default CreatePost;
+export default EditPost;

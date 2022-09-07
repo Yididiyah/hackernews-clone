@@ -1,6 +1,7 @@
 import React from "react";
 import Post from "./Post";
 import { useQuery, gql } from "@apollo/client";
+import { useParams } from "react-router";
 
 const POST_LIST_QUERY = gql`
   query PostList {
@@ -8,33 +9,43 @@ const POST_LIST_QUERY = gql`
       id
       title
       content
+      deleted
+      postType
+      postedBy {
+        id
+        username
+      }
+      comments {
+        id
+      }
+      votes {
+        postId
+        userId
+      }
     }
   }
 `;
 
 const PostList = () => {
-  const { data } = useQuery(POST_LIST_QUERY);
+  const { loading, error, data } = useQuery(POST_LIST_QUERY);
+  const { listType } = useParams();
 
-  const linksToRender = [
-    {
-      id: "link-id-1",
-      content: "Prisma gives you a powerful database toolkit 😎",
-      title: "https://prisma.io",
-    },
-    {
-      id: "link-id-2",
-      content: "The best GraphQL client for React",
-      title: "https://www.apollographql.com/docs/react/",
-    },
-  ];
+  if (loading) return "Loading...";
+  if (error) return `Error: ${error.message}`;
 
   return (
-    <div className="post-list">
+    <div className="list">
       {data && (
         <>
-          {linksToRender.map((post) => (
-            <Post key={post.id} post={post} />
-          ))}
+          {data.posts.map((post, index) => {
+            if (post.deleted) {
+              return;
+            }
+            if (listType && post.postType !== listType) {
+              return;
+            }
+            return <Post num={index + 1} key={post.id} post={post} />;
+          })}
         </>
       )}
     </div>

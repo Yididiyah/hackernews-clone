@@ -43,7 +43,7 @@ input {
   border-color: buttonface;
   cursor: pointer;
   max-width: 250px;
-  display: inline-block;
+  display: block;
   margin-right: 0.375rem;
 }
 .form {
@@ -76,6 +76,10 @@ input {
   border: 1px solid #bcccdc;
   margin-bottom: 0.3rem;
 }
+
+.post-type {
+  margin-bottom: 1rem;
+}
 .nav-bar {
   display: flex;
   justify-content: flex-start;
@@ -83,15 +87,24 @@ input {
   margin: 0.2rem auto 0 auto;
   padding: 0.1rem 0.3rem;
 }
-.nav-bar a {
+.nav-bar a,
+.nav-bar button {
   text-decoration: none;
   margin-right: 5px;
   color: black;
+  cursor: pointer;
 }
-.post-list {
+.nav-bar button {
+  background: transparent;
+  border: none;
+  color: black;
+  margin-right: 5px;
+}
+.list {
   max-width: 900px;
   margin: 0 auto;
-  background: rgb(246, 246, 239);
+  background-color: rgb(246, 246, 239);
+  padding: 1rem;
 }
 .bold {
   font-weight: 900;
@@ -105,7 +118,92 @@ input {
   padding: 0;
   border: none;
   cursor: pointer;
+  text-decoration: none;
+}
+.link-btn:hover {
+  text-decoration: underline;
 }
 .push-right {
   margin-left: auto;
+}
+
+.user-meta {
+  display: flex;
+}
+
+.username > span {
+  margin-right: 1.2rem;
+}
+.user-meta > span {
+  margin-right: 0.7rem;
+}
+.links {
+  display: flex;
+  flex-direction: column;
+}
+.links > a {
+  text-decoration: underline;
+  margin-bottom: 0.4rem;
+}
+.comment-area {
+  width: 70%;
+  height: 150px;
+  padding: 12px 20px;
+  margin-bottom: 1rem;
+  box-sizing: border-box;
+  border: 2px solid #ccc;
+  border-radius: 4px;
+  background-color: #f8f8f8;
+  font-size: 16px;
+}
+
+.comment-form {
+  display: flex;
+  flex-direction: column;
+  margin: 1.5rem;
+}
+.comment-link {
+  font-size: 10px;
+  color: #828282;
+  text-decoration: none;
+}
+.comment-link:hover {
+  text-decoration: underline;
+}
+.comment-content {
+  font-size: 13px;
+  color: black;
+}
+.link-btn {
+  border: none;
+  background: transparent;
+  font-size: 0.7rem;
+  padding: 0.1rem;
+  padding-top: -0.3rem;
+  display: inline-block;
+  cursor: pointer;
+}
+.grey {
+  color: #828282;
+}
+.md {
+  font-size: 13px;
+}
+.sm {
+  font-size: 10px;
+}
+.link {
+  text-decoration: none;
+}
+.link:hover {
+  text-decoration: underline;
+}
+.post-bottom {
+  margin-left: 2.4rem;
+}
+.replyA {
+  margin-left: 3rem;
+}
+.replyB {
+  margin-left: 6rem;
 }

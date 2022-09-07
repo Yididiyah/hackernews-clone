@@ -2,7 +2,7 @@ import React from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { AUTH_TOKEN } from "../constants";
 
-const Header = () => {
+const Header = ({ setListType }) => {
   const authToken = localStorage.getItem(AUTH_TOKEN);
   const navigate = useNavigate();
   const logout = () => {
@@ -16,6 +16,24 @@ const Header = () => {
       </Link>
 
       <Link to="/">new</Link>
+      <div>|</div>
+      <Link to="/list/ASK">ask</Link>
+      <div>|</div>
+      <Link to="/list/SHOW">show</Link>
+      <div>|</div>
+      <Link to="/list/JOB">job</Link>
+
+      {/* <button type="button" onClick={() => setListType("ASK")}>
+        Ask
+      </button>
+      <div>|</div>
+      <button type="button" onClick={() => setListType("SHOW")}>
+        Show
+      </button>
+      <div>|</div>
+      <button type="button" onClick={() => setListType("JOB")}>
+        Job
+      </button> */}
 
       {authToken && (
         <>
