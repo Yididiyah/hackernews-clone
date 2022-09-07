@@ -1,7 +1,7 @@
-import { gql, useMutation, useQuery } from "@apollo/client";
+import { gql, useMutation } from "@apollo/client";
 
 import React, { useState } from "react";
-import { useNavigate, useParams } from "react-router";
+import { useNavigate } from "react-router";
 
 const CREATE_POST_MUTATION = gql`
   mutation CreatePostMutation(
@@ -23,16 +23,6 @@ const CREATE_POST_MUTATION = gql`
       votes {
         postId
       }
-    }
-  }
-`;
-
-const POST_QUERY = gql`
-  query Post($id: String!) {
-    post(id: $id) {
-      id
-      title
-      content
     }
   }
 `;

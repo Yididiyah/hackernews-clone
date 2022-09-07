@@ -46,7 +46,7 @@ const EditPost = () => {
     content: "",
   });
 
-  const { loading, error, data } = useQuery(POST_QUERY, {
+  const { loading, error } = useQuery(POST_QUERY, {
     variables: {
       id: postId,
     },

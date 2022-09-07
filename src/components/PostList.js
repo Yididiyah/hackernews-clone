@@ -39,10 +39,10 @@ const PostList = () => {
         <>
           {data.posts.map((post, index) => {
             if (post.deleted) {
-              return;
+              return null;
             }
             if (listType && post.postType !== listType) {
-              return;
+              return null;
             }
             return <Post num={index + 1} key={post.id} post={post} />;
           })}

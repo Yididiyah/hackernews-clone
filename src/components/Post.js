@@ -72,7 +72,7 @@ const Post = ({ num, post }) => {
           </button>
         )}
         {post.content + " "}
-        <a href={post.title} target="_blank" className="link">
+        <a href={post.title} target="_blank" rel="noreferer" className="link">
           ({post.title})
         </a>
       </div>
