@@ -8,6 +8,8 @@ This is the frontend project I made while learning graphql using apollo client. 
 The challenging thing was knowing in advance what data the frontend components needed and making sure they're available in my queries, mutations...It rquires a well defined schema and sync with the backend developer.
 The backend used for this project can be foud below:
 
+`https://github.com/yisnur23/hn-clone`
+
 ## How to install and run the project
 
 ### `npm start`
